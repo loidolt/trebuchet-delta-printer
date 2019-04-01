@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<printer>
+	<shape>
+		<grid color="#454545" spacing="10"/>
+		
+	
+	
+	
+	<circle color="#dddddd" radius="95" x="0" y="0"/>
+	</shape>
+	<general>
+		<name>Trebuchet</name>
+		<slug>Trebuchet</slug>
+		<firmwareName>Smoothieware</firmwareName>
+		<printerVariant>delta</printerVariant>
+		<active>true</active>
+		<fan>true</fan>
+		<tempUpdateEvery>1</tempUpdateEvery>
+		<sdcard>true</sdcard>
+		<softwarePower>true</softwarePower>
+		<defaultVolumetric>false</defaultVolumetric>
+	</general>
+	<connection>
+		<serial>
+			<baudrate>115200</baudrate>
+			<device>/dev/serial/by-id/usb-Uberclock_Smoothieboard_0B004015AEC884C356C1B626F50020C5-if00</device>
+			<pingPong>false</pingPong>
+			<inputBufferSize>127</inputBufferSize>
+			<communicationTimeout>30</communicationTimeout>
+			<protocol>0</protocol>
+		</serial>
+		<lcdTimeMode>4</lcdTimeMode>
+		<resetScript/>
+	</connection>
+	<movement>
+		<xMin>-95</xMin>
+		<xMax>95</xMax>
+		<xHome>0</xHome>
+		<yMin>-95</yMin>
+		<yMax>95</yMax>
+		<yHome>0</yHome>
+		<zMin>0</zMin>
+		<zMax>190</zMax>
+		<zHome>190</zHome>
+		<xyJerk>0.05</xyJerk>
+		<zJerk>0.30000000000000004</zJerk>
+		<timeMultiplier>1</timeMultiplier>
+		<movebuffer>16</movebuffer>
+		<xySpeed max="500">100</xySpeed>
+		<zSpeed max="500">100</zSpeed>
+		<xyPrintAcceleration>3000</xyPrintAcceleration>
+		<xyTravelAcceleration>3000</xyTravelAcceleration>
+		<zPrintAcceleration>100</zPrintAcceleration>
+		<zTravelAcceleration>100</zTravelAcceleration>
+		<endstops all="true" x="true" y="true" z="true"/>
+		<invert x="false" y="false" z="false"/>
+		<G10Speed>50</G10Speed>
+		<G10Distance>3</G10Distance>
+		<G10LongDistance>50</G10LongDistance>
+		<G11Speed>8.000160000000001</G11Speed>
+		<G11ExtraDistance>0</G11ExtraDistance>
+		<G11ExtraLongDistance>0</G11ExtraLongDistance>
+		<G10ZLift>0</G10ZLift>
+	</movement>
+	<extruders>
+		<extruder changeFastDistance="0" changeSlowDistance="0" filamentDiameter="1.75" lastTemp="245" maxTemp="260" num="0">
+			<maxSpeed acceleration="5000" jerk="30" max="30"/>
+			<extrude speed="2"/>
+			<retract speed="30"/>
+			<tempChange cooldownPerSecond="0.5" heatupPerSecond="2"/>
+			<offsets x="0" y="0"/>
+			<temperatures>
+				<temperature value="245">ABS 245</temperature>
+				<temperature value="210">PLA 210</temperature>
+				<temperature value="195">PLA 195</temperature>
+			</temperatures>
+		<alias/>
+		</extruder>
+	</extruders>
+	<heatedBed cooldownPerSecond="0.02" heatupPerSecond="0.2" installed="true" lastTemp="0" maxTemp="120">
+		<temperatures>
+			<temperature value="115">ABS</temperature>
+			<temperature value="50">PLA</temperature>
+		</temperatures>
+	</heatedBed>
+	<quickCommands/>
+	<webcam>
+		<method>3</method>
+		<timelapseMethod>0</timelapseMethod>
+		<staticUrl>http://192.168.1.142:8080/?action=snapshot</staticUrl>
+		<dynamicUrl>http://192.168.1.142:8080/?action=stream</dynamicUrl>
+		<orientation>270</orientation>
+		<reloadInterval>3</reloadInterval>
+		<timelapseInterval>20</timelapseInterval>
+		<timelapseHeight>0.1</timelapseHeight>
+		<timelapseLayer>1</timelapseLayer>
+		<timelapseBitrate>1000</timelapseBitrate>
+		<timelapseSelected>0</timelapseSelected>
+		<timelapseFramerate>30</timelapseFramerate>
+	</webcam>
+	<properties/>
+<scripts>
+		<script name="kill">; disable motors
+M84
+
+;disable all heaters
+{% snippet 'disable_hotends' %}
+{% snippet 'disable_bed' %}
+;disable fan
+M106 S0</script>
+	</scripts>
+</printer>
